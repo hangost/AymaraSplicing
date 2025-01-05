@@ -2,6 +2,8 @@
 
 library(DESeq2)
 library(tximport)
+library(doParallel)
+library(BiocParallel)
 
 te.oper <- "./12.rsem.re/GNC/"
 exp.files <- list.files(te.oper1,full.names=T)
