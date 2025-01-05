@@ -1,3 +1,5 @@
+# Mapping for WGS data
+
 #!/bin/bash
 #SBATCH --time=72:00:00
 #SBATCH --nodes=1
