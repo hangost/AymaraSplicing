@@ -1,3 +1,5 @@
+# Estimation for alternative splicing rates as PSI
+
 comp <- commandArgs(TRUE)
 comp <- comp[1]
 
