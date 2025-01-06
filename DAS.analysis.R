@@ -1,11 +1,9 @@
 # Analysis for differential alternative splicing
 
-
 sig.cut <- function(test.mat){
   test.mat <- test.mat[as.double(test.mat[,"FDR"]) < cut.fdr & abs(as.double(test.mat[,"IncLevelDifference"])) > cut.fc,]
   return (test.mat)
 }
-
 
 tarMet <- "JunctionCountOnly"
 GNC.A3SS.f <- paste("./5.rMATs.result/GNC/MATS_output/A3SS.MATS.",tarMet,".txt",sep="")
@@ -45,4 +43,5 @@ write.table(a5ss,"./results/A5SS.re",sep='\t',quote=F,row.names=F)
 write.table(es,"./results/ES.re",sep='\t',quote=F,row.names=F)
 write.table(ir,"./results/IR.re",sep='\t',quote=F,row.names=F)
 write.table(mxe,"./results/MXE.re",sep='\t',quote=F,row.names=F)
+
 
