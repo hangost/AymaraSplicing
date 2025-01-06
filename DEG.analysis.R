@@ -43,5 +43,5 @@ DEGs <- getBM(attributes=c('ensembl_gene_id', 'hgnc_symbol','ensembl_transcript_
 DEGs <- unique(DEGs[,1:2])
 rownames(DEGs) <- DEGs[,1]
 DEG.list <- cbind(DEGs[rownames(sig.DEG.re),2],rownames(sig.DEG.re),sig.DEG.re[,"pvalue"],sig.DEG.re[,"log2FoldChange"])
-write.table(DEG.list,"./results_v2/sig.sig.DEG.re",sep='\t',quote=F,row.names=F,col.names=F)
+write.table(DEG.list,"./results_v2/sig.DEG.re",sep='\t',quote=F,row.names=F,col.names=F)
 
