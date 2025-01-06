@@ -74,11 +74,11 @@ final.geno.mat <- impute.vcf.mat[,-c(6:9)]
 colnames(final.geno.mat) <- c("chr","locus","id","ref","alt",paste("11090X",1:19,sep=""))
 vcf.geno.ran <- GRanges(Rle(impute.vcf.mat[,1]),IRanges(as.integer(impute.vcf.mat[,2]),as.integer(impute.vcf.mat[,2])))
 
-write.table(a3ss,"./results/A3SS.re",sep='\t',quote=F,row.names=F)
-write.table(a5ss,"./results/A5SS.re",sep='\t',quote=F,row.names=F)
-write.table(es,"./results/ES.re",sep='\t',quote=F,row.names=F)
-write.table(ir,"./results/IR.re",sep='\t',quote=F,row.names=F)
-write.table(mxe,"./results/MXE.re",sep='\t',quote=F,row.names=F)
+sQTLs.A3SS <- read.table("./results/A3SS.re",sep='\t',header=T)
+sQTLs.A5SS <- read.table("./results/A5SS.re",sep='\t',header=T)
+sQTLs.ES <- read.table("./results/ES.re",sep='\t',header=T)
+sQTLs.IR <- read.table("./results/IR.re",sep='\t',header=T)
+sQTLs.MXE <- read.table("./results/MXE.re",sep='\t',header=T)
 
 sQTLs.A3SS <- sQTLs.test(sig.GNC.A3SS.re,A3SS.g.ran,"A3SS")
 sQTLs.A5SS <- sQTLs.test(sig.GNC.A5SS.re,A5SS.g.ran,"A5SS")
@@ -89,6 +89,8 @@ sQTLs.MXE <- sQTLs.test(sig.GNC.MXE.re,MXE.g.ran,"MXE")
 total.sQTLs <- rbind(sQTLs.A3SS,sQTLs.A5SS,sQTLs.ES,sQTLs.IR,sQTLs.MXE)
 sig.total.sQTLs <- total.sQTLs[which(as.double(total.sQTLs[,4]) < 0.05),]
 write.table(sig.total.sQTLs,"./results/sig.sQTLs.re",sep='\t',quote=F,row.names=F,col.names=F)
+
+
 
 		 
 # eQTLs analysis
@@ -104,6 +106,7 @@ ay.sam <- total.sample.info[is.element(total.sample.info[,3],sample.in[sample.in
 eu.sam <- total.sample.info[is.element(total.sample.info[,3],sample.in[sample.in[,3] == "Eu",1]),1]
 vcf.f <- "./13.IMPUTE/result/vcffiles/total.vcf.gz"
 
+load("GNC.gene.DEG.re")
 normalized_counts <- counts(dds.re, normalized=TRUE)
 sig.exp <- normalized_counts[rownames(sig.DEG.re),]
 
